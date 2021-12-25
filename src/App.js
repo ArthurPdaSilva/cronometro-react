@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import "./estilo.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      text: 0,
+      textBtn: 'INICIAR'
+    }
+
+    this.timer = null;
+    this.iniciar = this.iniciar.bind(this);
+    this.limpar = this.limpar.bind(this);
+  }
+
+  iniciar(){
+    let state = this.state;
+    if(this.timer != null){
+      clearInterval(this.timer);
+      this.timer = null;
+      state.textBtn = "INICIAR";
+    }else{
+      this.timer = setInterval(() => {
+        state.text += 0.1;
+        this.setState(state);
+      }, 100);
+      state.textBtn = "PAUSAR";
+    }
+
+    this.setState(state);
+  }
+
+  limpar(){
+    let state = this.state;
+    if(this.timer != null){
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+    state.textBtn = "INICIAR";
+    state.text = 0;
+    this.setState(state);
+  }
+
+  render(){
+    return (
+      <div className="container">
+        <img src={require("./assets/cronometro.png")} alt="cronômetro"/>
+        <h3>{this.state.text.toFixed(1)}</h3>
+        <div className="btnGroup">
+          <button onClick={this.iniciar}>{this.state.textBtn}</button>
+          <button onClick={this.limpar}>ZERAR</button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

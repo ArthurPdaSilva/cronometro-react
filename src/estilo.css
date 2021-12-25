@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(28, 52, 131);
+    height: 100vh;
+    width: 100%;
+    gap: 30px;
+}
+
+.container > h3{
+    position: absolute;
+    color: white;
+    font-size: 5rem;
+}
+
+.container .btnGroup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    width: 100%;
+}
+
+.container .btnGroup button{
+    padding: 10px;  
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.container .btnGroup button:hover{
+    background-color: gray;
+}
